@@ -5,14 +5,26 @@
 import { DocumentController } from "../src/DocumentController";
 import { LipBreakFinder } from "../src/LipBreakFinder";
 
+afterEach(() => {
+  document.body.innerHTML = '';
+})
+
+const initializeHtmlDocument = () => {
+  const inputElement = document.createElement('input');
+  inputElement.id = 'input-number';
+  document.body.append(inputElement);
+
+  const outputElement = document.createElement('div');
+  outputElement.id = 'lip-breaks-output'
+  document.body.append(outputElement);
+
+  return { inputElement }
+}
+
 describe('Document controller', () => {
+  it('should call parametrized function with inputted data', () => {
 
-  it.skip('should call parametrized function with inputted data', () => {
-
-    // initialize mock document
-    const inputElement = document.createElement('input');
-    inputElement.id = 'input-number';
-    document.body.append(inputElement);
+    const { inputElement } = initializeHtmlDocument();
 
     const lipBreakFinder = new LipBreakFinder();
 
@@ -21,7 +33,7 @@ describe('Document controller', () => {
       inputElementId: 'input-number'
     });
 
-    const getDescendingLipBreakTonesWithSlidePositionsForPartialSpy =  jest.spyOn(lipBreakFinder, 'getDescendingLipBreakTonesWithSlidePositionsForPartial')
+    const getDescendingLipBreakTonesWithSlidePositionsForPartialSpy = jest.spyOn(lipBreakFinder, 'getDescendingLipBreakTonesWithSlidePositionsForPartial')
 
     inputElement.dispatchEvent(new InputEvent('input', {
       data: '3'
@@ -33,15 +45,7 @@ describe('Document controller', () => {
 
   it('should populate lip breaks based on inputted data', () => {
 
-    const inputElement = document.createElement('input');
-    inputElement.id = 'input-number';
-    document.body.append(inputElement);
-
-    const outputElement = document.createElement('div');
-    outputElement.id = 'lip-breaks-output'
-    document.body.append(outputElement);
-
-    console.log(document.body.innerHTML)
+    const { inputElement } = initializeHtmlDocument();
 
     const lipBreakFinder = new LipBreakFinder();
 
