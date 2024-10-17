@@ -3,7 +3,7 @@ export interface TromboneNote {
   slidePosition: number
 }
 
-export const TromboneNoteMap = new Map<number, TromboneNote[]>()
+export const TromboneNoteMap: Map<number, TromboneNote[]> = new Map<number, TromboneNote[]>()
   .set(1, [
     { noteName: 'Bb1', slidePosition: 1 },
     { noteName: 'A1', slidePosition: 2 },
