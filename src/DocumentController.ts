@@ -16,7 +16,7 @@ export class DocumentController {
         const lipBreaks = config.lipBreakFinder.getDescendingLipBreakTonesWithSlidePositionsForPartial(Number.parseInt(event.data));
         const lipBreakOutputElement = document.getElementById('lip-breaks-output');
         if (lipBreakOutputElement) {
-          lipBreakOutputElement.innerHTML = this.createHtmlListElementForLipBreaks(lipBreaks)
+          lipBreakOutputElement.innerHTML = `<p>Descending lip breaks:</p>${this.createHtmlListElementForLipBreaks(lipBreaks)}`
         }
       }
 

@@ -43,7 +43,7 @@ describe('Document controller', () => {
 
   });
 
-  it('should populate lip breaks based on inputted data', () => {
+  it('should populate descending lip breaks based on inputted data', () => {
 
     const { inputElement } = initializeHtmlDocument();
 
@@ -58,8 +58,9 @@ describe('Document controller', () => {
       data: '2'
     }));
 
-    expect(document.getElementById('lip-breaks-output')?.innerHTML).toEqual(
-      `<ul><li>Bb1 in position 1</li><li>A1 in position 2</li><li>Ab1 in position 3</li><li>G1 in position 4</li><li>F#1 in position 5</li><li>F1 in position 6</li><li>E1 in position 7</li></ul>`
+    expect(document.getElementById('lip-breaks-output')?.innerHTML).toEqual(expect.stringContaining(
+      `<p>Descending lip breaks:</p><ul><li>Bb1 in position 1</li><li>A1 in position 2</li><li>Ab1 in position 3</li><li>G1 in position 4</li><li>F#1 in position 5</li><li>F1 in position 6</li><li>E1 in position 7</li></ul>`
+    )
     );
 
   })
