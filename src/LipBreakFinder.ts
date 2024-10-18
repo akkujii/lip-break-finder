@@ -9,6 +9,10 @@ export class LipBreakFinder {
 
   constructor() { }
 
+  getAscendingLipBreakTonesWithSlidePositionsForPartial(partial: number): TromboneNote[] {
+    return LipBreakFinder.notesAndPartials.get(partial + 1) ?? [];
+  }
+
   getDescendingLipBreakTonesWithSlidePositionsForPartial(partial: number): TromboneNote[] {
     return LipBreakFinder.notesAndPartials.get(partial - 1) ?? [];
   }
