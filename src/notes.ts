@@ -87,9 +87,7 @@ export const TromboneNoteMap: Map<number, TromboneNote[]> = new Map<number, Trom
   ])
   .set(10, [
     { noteName: 'D5', slidePosition: 1 },
-    {
-      noteName: 'C#5', slidePosition: 2
-    },
+    { noteName: 'C#5', slidePosition: 2 },
     { noteName: 'C5', slidePosition: 3 },
     { noteName: 'B4', slidePosition: 4 },
     { noteName: 'Bb4', slidePosition: 5 },
