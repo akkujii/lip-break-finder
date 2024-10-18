@@ -13,10 +13,15 @@ export class DocumentController {
     document.getElementById(config.inputElementId)?.addEventListener('input', (event) => {
 
       if (event instanceof InputEvent && event.data) {
-        const lipBreaks = config.lipBreakFinder.getDescendingLipBreakTonesWithSlidePositionsForPartial(Number.parseInt(event.data));
+        const ascendingLipBreaks = config.lipBreakFinder.getAscendingLipBreakTonesWithSlidePositionsForPartial(Number.parseInt(event.data));
+        const descendingLipBreaks = config.lipBreakFinder.getDescendingLipBreakTonesWithSlidePositionsForPartial(Number.parseInt(event.data));
         const lipBreakOutputElement = document.getElementById('lip-breaks-output');
         if (lipBreakOutputElement) {
-          lipBreakOutputElement.innerHTML = `<p>Descending lip breaks:</p>${this.createHtmlListElementForLipBreaks(lipBreaks)}`
+
+          const ascendingLipBreaksHtml = `<p>Ascending lip breaks:</p>${this.createHtmlListElementForLipBreaks(ascendingLipBreaks)}`;
+          const descendingLipBreaksHtml = `<p>Descending lip breaks:</p>${this.createHtmlListElementForLipBreaks(descendingLipBreaks)}`;
+        
+          lipBreakOutputElement.innerHTML = ascendingLipBreaksHtml.concat(descendingLipBreaksHtml);
         }
       }
 

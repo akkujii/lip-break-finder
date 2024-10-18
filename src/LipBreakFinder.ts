@@ -2,6 +2,7 @@ import { TromboneNote, TromboneNoteMap } from "./notes";
 
 export interface ILipBreakFinder {
   getDescendingLipBreakTonesWithSlidePositionsForPartial(partial: number): TromboneNote[] 
+  getAscendingLipBreakTonesWithSlidePositionsForPartial(partial: number): TromboneNote[] 
 }
 export class LipBreakFinder {
 
