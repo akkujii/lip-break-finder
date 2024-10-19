@@ -10,7 +10,7 @@ The latest version of the tool is currently available in the following URL:
 
 In short, lip break is a technique to create distinction (also called legato) between two notes when moving from note to another without using tongue. The technique relies on moving from overtone partial to another.
 
-The table below lists notes which can be naturally played on a trombone from partials 1 to 12 which is considered as a good range for a professional trombone player.
+The table below lists notes which can be naturally played on a trombone from partials 1 to 12 which is considered as a good range for a professional trombone player. Colours are used to imply octaves eg. turqoise is contra (C1-B1), yellow is great (C2-B2), pink is small (C3-B3), green is one-lined (C4-B4) and blue is two-lined (C5-B5).
 
 ![Trombone notes for different partials and slide positions](partialsandslidepositions.png "A table showing trombone notes for different partials and slide positions")
 
