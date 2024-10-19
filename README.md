@@ -2,6 +2,10 @@
 
 This project is a tool for trombone players to find possible melodies using lip breaks.
 
+The latest version of the tool is currently available in the following URL:
+
+[https://akkujii.github.io/lip-break-finder/](https://akkujii.github.io/lip-break-finder/)
+
 ## What is a lip break
 
 In short, lip break is a technique to create distinction (also called legato) between two notes when moving from note to another without using tongue. The technique relies on moving from overtone partial to another.
