@@ -28,13 +28,13 @@ const initializeHtmlDocument = () => {
   outputElement.id = 'lip-breaks-output'
   document.body.append(outputElement);
 
-  return { inputElement, selectElement }
+  return { selectElement }
 }
 
 describe('Document controller', () => {
   it('should call parametrized function with inputted data', () => {
 
-    const { inputElement, selectElement } = initializeHtmlDocument();
+    const { selectElement } = initializeHtmlDocument();
 
     const lipBreakFinder = new LipBreakFinder();
 

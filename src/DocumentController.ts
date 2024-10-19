@@ -10,7 +10,7 @@ export class DocumentController {
 
   constructor(config: DocumentControllerConfig) {
 
-      document.getElementById(config.selectElementId)?.addEventListener('input', (event) => {
+      document.getElementById(config.selectElementId)?.addEventListener('input', () => {
         
           const partial = Number.parseInt((document.getElementById(config.selectElementId!) as HTMLSelectElement).value)
           this.populateLipBreaks(config, partial);
