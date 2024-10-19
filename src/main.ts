@@ -5,6 +5,5 @@ const lipBreakFinder = new LipBreakFinder();
 
 new DocumentController({
   lipBreakFinder: lipBreakFinder,
-   inputElementId: 'input-number',
   selectElementId: 'partial-select'
 });

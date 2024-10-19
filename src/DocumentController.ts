@@ -3,25 +3,12 @@ import { TromboneNote } from "./notes";
 
 export interface DocumentControllerConfig {
   lipBreakFinder: ILipBreakFinder;
-  inputElementId: string;
-  selectElementId?: string;
+  selectElementId: string;
 }
 
 export class DocumentController {
 
   constructor(config: DocumentControllerConfig) {
-
-    document.getElementById(config.inputElementId)?.addEventListener('input', (event) => {
-
-      if (event instanceof InputEvent && event.data) {
-        const partial = Number.parseInt(event.data)
-        this.populateLipBreaks(config, partial);
-      }
-
-    })
-
-    // TODO: Remove this if block / make selectElementId mandatory
-    if (config.selectElementId) {
 
       document.getElementById(config.selectElementId)?.addEventListener('input', (event) => {
         
@@ -29,7 +16,6 @@ export class DocumentController {
           this.populateLipBreaks(config, partial);
 
       })
-    }
 
   }
 
