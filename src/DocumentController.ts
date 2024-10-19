@@ -4,6 +4,7 @@ import { TromboneNote } from "./notes";
 export interface DocumentControllerConfig {
   lipBreakFinder: ILipBreakFinder;
   inputElementId: string;
+  selectElementId?: string;
 }
 
 export class DocumentController {
@@ -13,20 +14,36 @@ export class DocumentController {
     document.getElementById(config.inputElementId)?.addEventListener('input', (event) => {
 
       if (event instanceof InputEvent && event.data) {
-        const ascendingLipBreaks = config.lipBreakFinder.getAscendingLipBreakTonesWithSlidePositionsForPartial(Number.parseInt(event.data));
-        const descendingLipBreaks = config.lipBreakFinder.getDescendingLipBreakTonesWithSlidePositionsForPartial(Number.parseInt(event.data));
-        const lipBreakOutputElement = document.getElementById('lip-breaks-output');
-        if (lipBreakOutputElement) {
-
-          const ascendingLipBreaksHtml = `<p>Ascending lip breaks:</p>${this.createHtmlListElementForLipBreaks(ascendingLipBreaks)}`;
-          const descendingLipBreaksHtml = `<p>Descending lip breaks:</p>${this.createHtmlListElementForLipBreaks(descendingLipBreaks)}`;
-        
-          lipBreakOutputElement.innerHTML = ascendingLipBreaksHtml.concat(descendingLipBreaksHtml);
-        }
+        const partial = Number.parseInt(event.data)
+        this.populateLipBreaks(config, partial);
       }
 
     })
 
+    // TODO: Remove this if block / make selectElementId mandatory
+    if (config.selectElementId) {
+
+      document.getElementById(config.selectElementId)?.addEventListener('input', (event) => {
+        
+          const partial = Number.parseInt((document.getElementById(config.selectElementId!) as HTMLSelectElement).value)
+          this.populateLipBreaks(config, partial);
+
+      })
+    }
+
+  }
+
+  private populateLipBreaks(config: DocumentControllerConfig, partial: number) {
+    const ascendingLipBreaks = config.lipBreakFinder.getAscendingLipBreakTonesWithSlidePositionsForPartial(partial);
+    const descendingLipBreaks = config.lipBreakFinder.getDescendingLipBreakTonesWithSlidePositionsForPartial(partial);
+    const lipBreakOutputElement = document.getElementById('lip-breaks-output');
+    if (lipBreakOutputElement) {
+
+      const ascendingLipBreaksHtml = `<p>Ascending lip breaks:</p>${this.createHtmlListElementForLipBreaks(ascendingLipBreaks)}`;
+      const descendingLipBreaksHtml = `<p>Descending lip breaks:</p>${this.createHtmlListElementForLipBreaks(descendingLipBreaks)}`;
+
+      lipBreakOutputElement.innerHTML = ascendingLipBreaksHtml.concat(descendingLipBreaksHtml);
+    }
   }
 
   private createHtmlListElementForLipBreaks(notes: TromboneNote[]): string {

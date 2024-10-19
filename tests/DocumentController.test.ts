@@ -10,6 +10,16 @@ afterEach(() => {
 })
 
 const initializeHtmlDocument = () => {
+
+  const selectElement = document.createElement('select');
+  selectElement.id = 'partial-select';
+  for (let i = 1; i < 13; i++) {
+    const optionElement = document.createElement('option');
+    optionElement.value = i.toString();
+    selectElement.append(optionElement);
+  }
+  document.body.append(selectElement);
+
   const inputElement = document.createElement('input');
   inputElement.id = 'input-number';
   document.body.append(inputElement);
@@ -18,11 +28,31 @@ const initializeHtmlDocument = () => {
   outputElement.id = 'lip-breaks-output'
   document.body.append(outputElement);
 
-  return { inputElement }
+  return { inputElement, selectElement }
 }
 
 describe('Document controller', () => {
-  it('should call parametrized function with inputted data', () => {
+  it.only('should call parametrized function with inputted data', () => {
+
+    const { inputElement, selectElement } = initializeHtmlDocument();
+
+    const lipBreakFinder = new LipBreakFinder();
+
+    new DocumentController({
+      lipBreakFinder: lipBreakFinder,
+      inputElementId: 'input-number',
+      selectElementId: 'partial-select'
+    });
+
+    const getDescendingLipBreakTonesWithSlidePositionsForPartialSpy = jest.spyOn(lipBreakFinder, 'getDescendingLipBreakTonesWithSlidePositionsForPartial')
+
+    selectElement.value = '3';
+    selectElement.dispatchEvent(new Event('input'));
+
+    expect(getDescendingLipBreakTonesWithSlidePositionsForPartialSpy).toHaveBeenCalledWith(3);
+
+  });
+  it('legacy should call parametrized function with inputted data', () => {
 
     const { inputElement } = initializeHtmlDocument();
 
@@ -30,7 +60,8 @@ describe('Document controller', () => {
 
     new DocumentController({
       lipBreakFinder: lipBreakFinder,
-      inputElementId: 'input-number'
+      inputElementId: 'input-number',
+      selectElementId: 'partial-select'
     });
 
     const getDescendingLipBreakTonesWithSlidePositionsForPartialSpy = jest.spyOn(lipBreakFinder, 'getDescendingLipBreakTonesWithSlidePositionsForPartial')
@@ -51,7 +82,8 @@ describe('Document controller', () => {
 
     new DocumentController({
       lipBreakFinder: lipBreakFinder,
-      inputElementId: 'input-number'
+      inputElementId: 'input-number',
+      selectElementId: 'partial-select'
     });
 
     inputElement.dispatchEvent(new InputEvent('input', {
